@@ -2,18 +2,6 @@ if not game:IsLoaded() then
     game.Loaded:Wait()
 end
 
-local req = http_request or request or syn.request
-
-if not req then
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Rogue Hub Error",
-        Text = "Your exploit is unsupported with Rogue Hub!",
-        Duration = 5
-    })
-    
-    return
-end
-
 if makefolder and isfolder and not isfolder("Rogue Hub") then
     makefolder("Rogue Hub")
 
@@ -31,12 +19,9 @@ if not isfile("/Rogue Hub/Configs/Keybind.ROGUEHUB") then
     }))
 end
 
-response = req({
-    Url = "https://raw.githubusercontent.com/Kitzoon/Rogue-Hub/main/Games/" .. game.PlaceId .. ".lua",
-    Method = "GET"
-})
+response = game:HttpGet("https://raw.githubusercontent.com/Kitzoon/Rogue-Hub/main/Games/" .. game.PlaceId .. ".lua")
 
-if response.Body ~= "404: Not Found" then
+if response ~= "404: Not Found" then
     -- Anti AFK
     game:GetService("Players").LocalPlayer.Idled:Connect(function()
         game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 2, true, nil, 0)
@@ -45,7 +30,7 @@ if response.Body ~= "404: Not Found" then
     end)
 
     -- If its not 404 why make another HTTP request?
-    loadstring(response.Body)()
+    loadstring(response)()
 else
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Rogue Hub Error",
