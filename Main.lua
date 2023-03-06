@@ -8,6 +8,7 @@ if game.PlaceId == 6403373529 then
     end
     
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Message from Rogue Hub: This player has been banned while attempting to use our script! Enjoy playing the game free of hackers.", "All")
+    task.wait(1)
     game.ReplicatedStorage.AdminGUI:FireServer()
 else
     game:GetService("StarterGui"):SetCore("SendNotification", {
