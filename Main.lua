@@ -7,9 +7,8 @@ if game.PlaceId == 6403373529 then
         writefile("BANNED_FROM_SLAP_BATTLES.gif", game:HttpGet("https://media.tenor.com/PHREyAefRckAAAAS/packwatch.gif"))
     end
     
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Message from Rogue Hub: This player has been banned while attempting to use our script! Enjoy playing the game free of hackers.", "All")
-    task.wait(1)
-    game.ReplicatedStorage.AdminGUI:FireServer()
+    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Message from Rogue Hub: This player has been banned while attempting to use our script! Enjoy playing the game free of hackers.", "All")
+    game.ReplicatedStorage.WalkSpeedChanged:FireServer("Banned whilst using Rogue Hub! Slaps: " .. game.Players.LocalPlayer.leaderstats.Slaps.Value)
 else
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Rogue Hub Error",
